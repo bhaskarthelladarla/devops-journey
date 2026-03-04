@@ -1,7 +1,7 @@
 #!/bin/bash
 # variables
 THRESHOLD=80
-LOG_FILE="/var/log/health_checks.log"
+LOG_FILE="/Dev-Ops/Bhaskar/health_checks.log"
 # Function to log messages.
 log_message() {
     echo "$(date '+%Y-%m-%d %H:%M:%S') - $1" | tee -a "$LOG_FILE"
