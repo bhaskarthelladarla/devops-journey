@@ -1,2 +1,20 @@
-2026-03-04 09:44:54 - Starting disk usage check...
-2026-03-04 09:44:54 - Disk usage is at 44%, which is within the acceptable range.
+Disk Usage: 45%
+Memory Usage: 47%
+CPU Usage: 10.8%
+Health check completed with status: 0
+Disk Usage: 45%
+Memory Usage: 47%
+CPU Usage: 11.1%
+WARNING: Disk usage is above threshold!
+WARNING: Memory usage is above threshold!
+Health check completed with status: 1
+Disk Usage: 45%
+Memory Usage: 47%
+CPU Usage: 8.6%
+Health check completed with status: 0
+Disk Usage: 45%
+Memory Usage: 47%
+CPU Usage: 11.1%
+WARNING: Disk usage is above threshold!
+WARNING: Memory usage is above threshold!
+Health check completed with status: 1

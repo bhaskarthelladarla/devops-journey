@@ -1,18 +1,40 @@
 #!/bin/bash
-# variables
-THRESHOLD=80
-LOG_FILE="/Dev-Ops/Bhaskar/health_checks.log"
-# Function to log messages.
+# This script performs health checks on a RHEL system.
+# If no argument, default 80%
+THRESHOLD=${1:-80}
+LOGFILE="/Dev-Ops/Bhaskar/health_checks.log"
+# Function to log messages
 log_message() {
-    echo "$(date '+%Y-%m-%d %H:%M:%S') - $1" | tee -a "$LOG_FILE"
+    echo "$(date '+%Y-%m-%d %H:%M:%S') - $1" | tee -a "$LOGFILE"
 }
-log_message "Starting disk usage check..."
-# Check disk usage and alert if it exceeds the threshold.
-USAGE=$(df -h / | awk 'NR==2 {print $5}' | sed 's/%//')
-if [ "$USAGE" -gt "$THRESHOLD" ]; then
-    log_message "Disk usage is at ${USAGE}%, which exceeds the threshold of ${THRESHOLD}%."
-    exit 1
-else
-    log_message "Disk usage is at ${USAGE}%, which is within the acceptable range."
-    exit 0
+# check DISK USAGE
+Disk_USAGE=$(df -h / | awk 'NR==2 {print $5}' | sed 's/%//')
+echo "Disk Usage: $Disk_USAGE%" >> "$LOGFILE"
+
+# check Memory USAGE
+Memory_USAGE=$(free -m | awk '/Mem:/ {printf("%.0f"), $3/$2 * 100.0}')
+echo "Memory Usage: $Memory_USAGE%" >> "$LOGFILE"
+
+# Check CPU USAGE
+CPU_USAGE=$(top -bn1 | grep "Cpu(s)" | awk '{print 100 - $8}')
+CPU_INT=${CPU_USAGE%.*} # Convert to integer
+echo "CPU Usage: $CPU_USAGE%" >> "$LOGFILE"
+
+STATUS=0
+
+if [ "$Disk_USAGE" -gt "$THRESHOLD" ]; then
+    echo "WARNING: Disk usage is above threshold!" >> "$LOGFILE"
+    STATUS=1
 fi
+
+if [ "$Memory_USAGE" -gt "$THRESHOLD" ]; then
+    echo "WARNING: Memory usage is above threshold!" >> "$LOGFILE"
+    STATUS=1
+fi
+
+if [ "$CPU_INT" -gt "$THRESHOLD" ]; then
+    echo "WARNING: CPU usage is above threshold!" >> "$LOGFILE"
+    STATUS=1
+fi
+echo "Health check completed with status: $STATUS" >> "$LOGFILE"
+exit $STATUS
