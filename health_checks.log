@@ -18,3 +18,30 @@ CPU Usage: 11.1%
 WARNING: Disk usage is above threshold!
 WARNING: Memory usage is above threshold!
 Health check completed with status: 1
+Disk Usage: 45%
+Memory Usage: 45%
+CPU Usage: 18.6%
+Health check completed with status: 0
+Disk Usage: 45%
+Memory Usage: 45%
+CPU Usage: 15.4%
+WARNING: Disk usage is above threshold!
+WARNING: Memory usage is above threshold!
+Health check completed with status: 1
+Health check started at Tue Mar 10 09:29:46 PDT 2026
+Disk Usage: 45%
+Memory Usage: 45%
+CPU Usage: 13.2%
+Health check completed with status: 0
+========Health check started at Tue Mar 10 09:31:38 PDT 2026===========
+Disk Usage: 45%
+Memory Usage: 45%
+CPU Usage: 17.1%
+Health check completed with status: 0
+========Health check ended at Tue Mar 10 09:31:38 PDT 2026===========
+========Health check started at Tue Mar 10 10:02:34 PDT 2026===========
+Disk Usage: 45%
+Memory Usage: 55%
+CPU Usage: 63.4%
+Health check completed with status: 0
+========Health check ended at Tue Mar 10 10:02:34 PDT 2026===========

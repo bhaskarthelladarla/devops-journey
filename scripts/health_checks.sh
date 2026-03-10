@@ -4,6 +4,8 @@
 THRESHOLD=${1:-80}
 LOGFILE="/Dev-Ops/Bhaskar/health_checks.log"
 # Function to log messages
+
+echo "========Health check started at $(date)===========" >> "$LOGFILE"
 log_message() {
     echo "$(date '+%Y-%m-%d %H:%M:%S') - $1" | tee -a "$LOGFILE"
 }
@@ -37,4 +39,5 @@ if [ "$CPU_INT" -gt "$THRESHOLD" ]; then
     STATUS=1
 fi
 echo "Health check completed with status: $STATUS" >> "$LOGFILE"
+echo "========Health check ended at $(date)===========" >> "$LOGFILE"
 exit $STATUS
