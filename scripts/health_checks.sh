@@ -2,7 +2,7 @@
 # This script performs health checks on a RHEL system.
 # If no argument, default 80%
 THRESHOLD=${1:-80}
-LOGFILE="/Dev-Ops/Bhaskar/health_checks.log"
+LOGFILE="/Dev-Ops/Bhaskar/logs/health_checks.log"
 # Function to log messages
 
 echo "========Health check started at $(date)===========" >> "$LOGFILE"
